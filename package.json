@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@netlify/functions": "^1.6.0",
+    "axios": "^1.4.0",
     "vue": "^3.2.47"
   },
   "devDependencies": {
