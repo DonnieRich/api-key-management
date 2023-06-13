@@ -1,4 +1,4 @@
-exports.handler = async function (event, context) {
+const handler = async function (event, context) {
     // your server-side functionality
     const { SECRET_API_KEY } = process.env
     return {
@@ -6,3 +6,6 @@ exports.handler = async function (event, context) {
         body: JSON.stringify({ message: SECRET_API_KEY }),
     };
 };
+
+
+export { handler };

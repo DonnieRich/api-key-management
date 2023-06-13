@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-exports.handler = async function (event, context) {
+const handler = async function (event, context) {
     try {
 
         // your server-side functionality
@@ -35,3 +35,5 @@ exports.handler = async function (event, context) {
         }
     }
 };
+
+export { handler };
