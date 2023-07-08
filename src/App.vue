@@ -23,7 +23,7 @@ export default {
                 });
         },
         callAlmostSecretFunction() {
-            axios.get('/.netlify/functions/almostSecret')
+            axios.get('/.netlify/functions/almost-secret')
                 .then((response) => {
                     // handle success
                     console.log(response);
