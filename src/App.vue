@@ -6,16 +6,19 @@ export default {
         return {
             helloResult: '',
             almostSecretResult: '',
-            quizApiQuestion: ''
+            quizApiQuestion: '',
+            loading: false,
         }
     },
     methods: {
         callHelloFunction() {
+            this.loading = true;
             axios.get('/.netlify/functions/hello')
                 .then((response) => {
                     // handle success
                     console.log(response);
                     this.helloResult = response.data.message;
+                    this.loading = false;
                 })
                 .catch((error) => {
                     // handle error
@@ -23,11 +26,13 @@ export default {
                 });
         },
         callAlmostSecretFunction() {
+            this.loading = true;
             axios.get('/.netlify/functions/almost-secret')
                 .then((response) => {
                     // handle success
                     console.log(response);
                     this.almostSecretResult = response.data.message;
+                    this.loading = false;
                 })
                 .catch((error) => {
                     // handle error
@@ -35,11 +40,13 @@ export default {
                 });
         },
         callQuizApi() {
+            this.loading = true;
             axios.get('/.netlify/functions/quizapi')
                 .then((response) => {
                     // handle success
                     console.log(response);
                     this.quizApiQuestion = response.data.response[0].question;
+                    this.loading = false;
                 })
                 .catch((error) => {
                     // handle error
@@ -84,6 +91,10 @@ export default {
         La chiamata è andata a buon fine, il token è stato trasmesso correttamente, ma nessuno è in grado di leggerlo o
         copiarlo per poterlo utilizzare al posto nostro.
     </p>
+
+    <div v-if="loading" class="loader">
+        <h3>LOADING...</h3>
+    </div>
 </template>
 
 <style scoped>
@@ -100,5 +111,17 @@ export default {
 
 .logo.vue:hover {
     filter: drop-shadow(0 0 2em #42b883aa);
+}
+
+.loader {
+    align-items: center;
+    background-color: grey;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 </style>
