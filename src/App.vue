@@ -59,38 +59,42 @@ export default {
 </script>
 
 <template>
-    <h2>
-        Impostare correttamente le API key in progetti front-end
-    </h2>
-    <p>
-        Ispezionando il codice di questo sito potete vedere come i valori presenti nel codice JS siano facilmente visibili a
-        tutti gli utenti.
-        Questo è un grave problema di sicurezza quando succede con dati sensibili (es. una API Key che dovrebbe invece
-        essere privata e non disponibile a tutti).
-    </p>
+    <div class="wrapper">
+        <h2>
+            Impostare correttamente le API key in progetti front-end
+        </h2>
+        <p>
+            Ispezionando il codice di questo sito potete vedere come i valori presenti nel codice JS siano facilmente
+            visibili a
+            tutti gli utenti.
+            Questo è un grave problema di sicurezza quando succede con dati sensibili (es. una API Key che dovrebbe invece
+            essere privata e non disponibile a tutti).
+        </p>
 
-    <p>
-        Cliccando sul seguente pulsante eseguiamo la chiamata ad una funzione di Netlify e ne leggiamo il risultato qui:
-        [{{ helloResult }}]
-        <button @click="callHelloFunction()">HELLO</button>
-    </p>
+        <p>
+            Cliccando sul seguente pulsante eseguiamo la chiamata ad una funzione di Netlify e ne leggiamo il risultato qui:
+            [<span>{{ helloResult }}</span>]
+            <button @click="callHelloFunction()">HELLO</button>
+        </p>
 
-    <p>
-        Cliccando sul seguente pulsante eseguiamo la chiamata ad una funzione di Netlify che legge il contenuto di una
-        variabile d'ambiente impostata dal pannello di controllo:
-        [{{ almostSecretResult }}]
-        <button @click="callAlmostSecretFunction()">ALMOST SECRET</button>
-        Ovviamente il contenuto adesso non è più segreto... come fare quindi per esegure una chiamata API che ha necessità
-        di trasmettere anche una API Key, in modo sicuro?
-    </p>
+        <p>
+            Cliccando sul seguente pulsante eseguiamo la chiamata ad una funzione di Netlify che legge il contenuto di una
+            variabile d'ambiente impostata dal pannello di controllo:
+            [<span>{{ almostSecretResult }}</span>]
+            <button @click="callAlmostSecretFunction()">ALMOST SECRET</button>
+            Ovviamente il contenuto adesso non è più segreto... come fare quindi per esegure una chiamata API che ha
+            necessità
+            di trasmettere anche una API Key, in modo sicuro?
+        </p>
 
-    <p>
-        Eseguiamo adesso una chiamata ad una API reale - QuizAPI - che richiede la trasmissione di un token:
-        [{{ quizApiQuestion }}]
-        <button @click="callQuizApi()">CALL QUIZ API</button>
-        La chiamata è andata a buon fine, il token è stato trasmesso correttamente, ma nessuno è in grado di leggerlo o
-        copiarlo per poterlo utilizzare al posto nostro.
-    </p>
+        <p>
+            Eseguiamo adesso una chiamata ad una API reale - QuizAPI - che richiede la trasmissione di un token:
+            [<span>{{ quizApiQuestion }}</span>]
+            <button @click="callQuizApi()">CALL QUIZ API</button>
+            La chiamata è andata a buon fine, il token è stato trasmesso correttamente, ma nessuno è in grado di leggerlo o
+            copiarlo per poterlo utilizzare al posto nostro.
+        </p>
+    </div>
 
     <div v-if="loading" class="loader">
         <h3>LOADING...</h3>
@@ -123,5 +127,22 @@ export default {
     position: absolute;
     top: 0;
     width: 100%;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wrapper p {
+    padding: 10px;
+    border: 1px solid grey;
+}
+
+.wrapper p span {
+    font-weight: bold;
+    text-transform: uppercase;
 }
 </style>
