@@ -18,6 +18,7 @@ This is a tutorial aimed to help junior devs to correctly manage their API keys 
 - [How to write serverless functions](#how-to-write-serverless-functions)
 - [How to use serverless functions to communicate with the APIs](#how-to-use-serverless-functions-to-communicate-with-the-apis)
 - [Conclusion](#conclusion)
+- [Resources](#resources)
 
 ## How to install and use the Netlify CLI
 
@@ -238,7 +239,7 @@ In the next example you will see how to properly use a serverless function to ca
 Before that, let's push everything on the repository and check it on the live site.
 
 
-### Call the API passing the API key
+### Call QuizAPI passing the API key securely
 
 In this last example you will learn how to put all together and make secure calls to every API you need.
 The API used is from [QuizAPI](https://quizapi.io/docs/1.0/overview). In their documentation they suggest to attach the API key to a request as `HTTP header`:
@@ -371,8 +372,40 @@ axios.get('/.netlify/functions/quizapi')
 ```
 
 
+### Test the call on your local machine
+
+If you didn't stop the local environment, go to your browser and check if you can get a question from the QuizAPI endpoint!
+After that go further and push everything on your repo to also test the call from the live site.
+
+
+### Test the call on the live site
+
+If you can get a question from QuizAPI from your live website, great!
+
+If not, maybe your are facing this kind of error: `'Error: Cannot find module '/var/task/node_modules/axios/dist/node/axios.cjs'`.
+
+To solve this error create a file called `netlify.toml` and add this code inside it:
+```toml
+[functions]
+  node_bundler = "esbuild"
+```
+
+Commit, push and test again!
+
+
 ## Conclusion
 
 When calling external APIs services from your front-end project always remember to keep hidden and secured your API keys (or other sensitive informations).
-One way to do this is to leverage the power of Netlify serverless functions that can act as an API endpoint, read environment variables and make calls to other APIs.
+One way to do this is to leverage the power of Netlify serverless functions that can act as API endpoint, read environment variables and make calls to other APIs.
 
+If this article was helpful or want to start a conversation, feel free to reach out in the comments or on [LinkedIn](https://www.linkedin.com/in/donato-riccio-wda/)
+I'll be happy to receive any feedback or ideas for future articles and tutorials.
+
+## Resources
+- [Netlify CLI](https://docs.netlify.com/cli/get-started/)
+- [Netlify Environment Variables](https://docs.netlify.com/environment-variables/get-started/)
+- [Netlify Serverless Functions](https://docs.netlify.com/functions/create/?fn-language=js)
+- [Up and running with serverless functions - YouTube Playlist](https://youtu.be/PCDhpRms4Ek)
+- [QuizAPI](https://quizapi.io/docs/1.0/overview)
+- [Cannot find module error - Netlify Answers](https://answers.netlify.com/t/error-with-scheduled-functions-and-axios-error-cannot-find-module-var-task-node-modules-axios-dist-node-axios-cjs/94186)
+- [GitHub Example Repo](https://github.com/DonnieRich/api-key-management)
